@@ -2,13 +2,13 @@
 <!-- This file shows how to design a first-run page that provides a welcome screen to the user about the features of the add-in. -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contoso Task Pane Add-in</title>
+    <title>CSDC Excel Viewer</title>
 
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
@@ -19,37 +19,57 @@
     <!-- Template styles -->
     <link href="taskpane.css" rel="stylesheet" type="text/css" />
 </head>
-
-<body class="ms-font-m ms-welcome ms-Fabric">
-    <header class="ms-welcome__header ms-bgColor-neutralLighter">
-        <img width="90" height="90" src="../../assets/logo-filled.png" alt="Contoso" title="Contoso" />
-        <h1 class="ms-font-su">Welcome</h1>
-    </header>
-    <section id="sideload-msg" class="ms-welcome__main">
-        <h2 class="ms-font-xl">Please <a target="_blank" href="https://learn.microsoft.com/office/dev/add-ins/testing/test-debug-office-add-ins#sideload-an-office-add-in-for-testing">sideload</a> your add-in to see app body.</h2>
-    </section>
-    <main id="app-body" class="ms-welcome__main" style="display: none;">
-        <h2 class="ms-font-xl"> Discover what Office Add-ins can do for you today! </h2>
-        <ul class="ms-List ms-welcome__features">
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Ribbon ms-font-xl"></i>
-                <span class="ms-font-m">Achieve more with Office integration</span>
-            </li>
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Unlock ms-font-xl"></i>
-                <span class="ms-font-m">Unlock features and functionality</span>
-            </li>
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Design ms-font-xl"></i>
-                <span class="ms-font-m">Create and visualize like a pro</span>
-            </li>
-        </ul>
-        <p class="ms-font-l">Modify the source files, then click <b>Run</b>.</p>
-        <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">Run</span>
+<body>
+<div class="task-pane">
+    <!-- Section 1: Configuration -->
+    <section id="section-1" class="section-content">
+        <div class="control-group">
+            <button class="ms-Button ms-Button--primary">
+                <span class="ms-Button-label">Select configuration file</span>
+            </button>
+            <div class="file-info-container">
+                <div id="file-name-display" class="filename-outline">
+                    No file selected
+                </div>
+            </div>
         </div>
-        <p><label id="item-subject"></label></p>
-    </main>
+    </section>
+
+    <!-- Section 2: Accounts -->
+    <section id="section-2" class="section-content">
+        <div class="control-group">
+            <button class="ms-Button ms-Button--standard">
+                <span class="ms-Button-label">Configure accounts</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Section 3: Data Selection -->
+    <section id="section-3" class="section-content">
+        <div class="control-group">
+            <button class="ms-Button ms-Button--primary">
+                <span class="ms-Button-label">Select file</span>
+            </button>
+            <div class="file-info-container">
+                <div id="data-file-name-display" class="filename-outline">
+                    No file selected
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Spacer -->
+    <section id="section-4" class="section-spacer"></section>
+
+    <!-- Section 5: Execution -->
+    <section id="section-5" class="section-content section-bottom">
+        <div class="control-group">
+            <button id="main-action-button" class="ms-Button ms-Button--primary full-width">
+                <span class="ms-Button-label">Select config and input file first</span>
+            </button>
+        </div>
+    </section>
+</div>
 </body>
 
 </html>
