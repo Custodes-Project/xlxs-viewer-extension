@@ -5,6 +5,8 @@
 
 /* global console, document, Excel, Office */
 
+/// <reference types="office-js" />
+
 Office.onReady((info) => {
   if (info.host === Office.HostType.Excel) {
     document.getElementById("sideload-msg").style.display = "none";
@@ -34,3 +36,42 @@ export async function run() {
     console.error(error);
   }
 }
+
+// Import UI file selector component (handles HTML input element and file selection)
+import { InputFile } from "./InputFile";
+
+// Import container that stores the currently selected file for the viewer
+import { ContainerFile } from "./ContainerFile";
+
+import {TargetFile } from "./TargetFile"
+
+// Declare references that will be initialized once Office is ready
+let inputFile: InputFile;
+let containerFile: ContainerFile;
+let targetFile: TargetFile;
+
+// Office.onReady ensures the Office add-in environment is fully loaded
+Office.onReady(() => {
+
+  // Get the file input element from the taskpane HTML
+  const inputElement = document.getElementById("file-input") as HTMLInputElement;
+
+  // Initialize InputFile to manage user file selection
+  inputFile = new InputFile(inputElement);
+
+  // Initialize ContainerFile to store selected file state
+  containerFile = new ContainerFile();
+
+  // Initialize TargetFile to represent active files
+  targetFile = new TargetFile();
+
+  // Listen for changes to the file input (user selects a file)
+  inputElement.addEventListener("change", () => {
+
+    // Retrieve the selected file from InputFile component
+    const file = inputFile.getFile();
+
+    // Store the selected file in ContainerFile for later use by viewer logic
+    containerFile.setFile(file);
+  });
+});
