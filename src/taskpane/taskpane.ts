@@ -16,6 +16,9 @@ import { ContainerFile } from "./ContainerFile";
 // Import target file representation for the active viewer file
 import { TargetFile } from "./TargetFile";
 
+// Import ability to open selected file in Excel
+import { openSelectedFileInExcel } from "./FileLoader";
+
 // Declare references that will be initialized once Office is ready
 let configInputFile: InputFile;
 let dataInputFile: InputFile;
@@ -89,17 +92,21 @@ Office.onReady((info) => {
     });
 
     // Listen for data file selection
-    dataInput.addEventListener("change", () => {
+    dataInput.addEventListener("change", async () => {
       const file = dataInputFile.getFile();
 
-      // Store the selected file in ContainerFile for later use by viewer logic
       containerFile.setFile(file);
-
-      // Store the selected file as the active target file
       targetFile.setFile(file);
 
       if (file) {
         dataDisplay.textContent = file.name;
+
+        try {
+          await openSelectedFileInExcel(file, "guest");
+          console.log(`Opened authorized sheets from ${file.name}.`);
+        } catch (error) {
+          console.error("Failed to open selected file in Excel:", error);
+        }
       } else {
         dataDisplay.textContent = "No file selected";
       }
