@@ -24,9 +24,13 @@
     <!-- Section 1: Configuration -->
     <section id="section-1" class="section-content">
         <div class="control-group">
-            <button class="ms-Button ms-Button--primary">
+            <button id="config-button" class="ms-Button ms-Button--primary">
                 <span class="ms-Button-label">Select configuration file</span>
             </button>
+
+            <!-- Hidden file input -->
+            <input type="file" id="config-input" style="display:none" />
+
             <div class="file-info-container">
                 <div id="file-name-display" class="filename-outline">
                     No file selected
@@ -47,9 +51,13 @@
     <!-- Section 3: Data Selection -->
     <section id="section-3" class="section-content">
         <div class="control-group">
-            <button class="ms-Button ms-Button--primary">
+            <button id="data-button" class="ms-Button ms-Button--primary">
                 <span class="ms-Button-label">Select file</span>
             </button>
+
+            <!-- Hidden file input -->
+            <input type="file" id="data-input" style="display:none" />
+
             <div class="file-info-container">
                 <div id="data-file-name-display" class="filename-outline">
                     No file selected
